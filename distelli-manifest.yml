@@ -1,13 +1,4 @@
 bmcgehee/ExampleJavaApp:
-  # This Basic Distelli Manifest assumes the following
-  # has been provisioned on the destination deploy server:
-  #
-  # OS: Ubuntu
-  # Installed Packages:
-  #   Java JRE >= 1.7   [sudo apt-get install default-jre]
-  #
-  # Set the JAVA_HOME (below) for your JRE install directory
-  #
   # This also requires that the Java JDK be installed on
   # the development server to compile the java code.
   #
@@ -20,11 +11,28 @@ bmcgehee/ExampleJavaApp:
     # Set the JAVA_HOME below for the destination
     # deployment server JRE directory.
     #
-    - JAVA_HOME: "/usr/lib/jvm/default-java/jre"
+    - JAVA_HOME: "/usr/lib/jvm/java-7-oracle/jre"
     #
     - JVM_ARGS: '"-Duser.timezone=UTC -Xmx128M -Xms128M"'
     - PORT: "8001"
     - ARGS: "$PORT"
+
+  PreRelease:
+    - sudo add-apt-repository -y ppa:webupd8team/java
+    - sudo apt-get -y update
+    - echo debconf shared/accepted-oracle-license-v1-1 select true | sudo debconf-set-selections
+    - echo debconf shared/accepted-oracle-license-v1-1 seen true | sudo debconf-set-selections    
+    - sudo apt-get -y install oracle-java7-installer
+    - sudo apt-get -y install oracle-java7-set-default
+    - build.sh
+
+  PreInstall:
+    - sudo add-apt-repository -y ppa:webupd8team/java
+    - sudo apt-get -y update
+    - echo debconf shared/accepted-oracle-license-v1-1 select true | sudo debconf-set-selections
+    - echo debconf shared/accepted-oracle-license-v1-1 seen true | sudo debconf-set-selections    
+    - sudo apt-get -y install oracle-java7-installer
+    - sudo apt-get -y install oracle-java7-set-default
     
   Exec:
     - exec $JAVA_HOME/bin/java -cp $CLASSPATH $JVM_ARGS com.example.app.SimpleJavaApp $ARGS
