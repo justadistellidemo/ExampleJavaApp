@@ -39,6 +39,8 @@ kdehoop/example-java-app:
     
   PostStart:
     - publicIP=`curl -s http://ifconfig.me`
+    - echo ""
+    - echo ""
     - echo "Point your browser at http://"$publicIP":"$PORT to validate the app is working.
     
   PkgInclude:
