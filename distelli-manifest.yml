@@ -46,3 +46,4 @@ kdehoop/example-java-app:
   PkgInclude:
     - target/*.jar
     - lib/*.jar
+
