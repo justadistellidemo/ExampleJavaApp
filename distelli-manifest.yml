@@ -1,4 +1,4 @@
-kdehoop/ExampleJavaApp:
+kdehoop/example-java-app:
   # This also requires that the Java JDK be installed on
   # the development server to compile the java code.
   #
