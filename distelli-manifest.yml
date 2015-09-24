@@ -33,9 +33,13 @@ kdehoop/example-java-app:
     - echo debconf shared/accepted-oracle-license-v1-1 seen true | sudo debconf-set-selections    
     - sudo apt-get -y install oracle-java7-installer
     - sudo apt-get -y install oracle-java7-set-default
-    
+  
   Exec:
     - exec $JAVA_HOME/bin/java -cp $CLASSPATH $JVM_ARGS com.example.app.SimpleJavaApp $ARGS
+    
+  PostStart:
+    - publicIP=`curl -s http://ifconfig.me`
+    - echo "Point your browser at http://"$publicIP":"$PORT to validate the app is working.
     
   PkgInclude:
     - target/*.jar
