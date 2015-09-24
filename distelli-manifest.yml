@@ -38,7 +38,7 @@ kdehoop/example-java-app:
     - exec $JAVA_HOME/bin/java -cp $CLASSPATH $JVM_ARGS com.example.app.SimpleJavaApp $ARGS
     
   PostStart:
-    - publicIP=`curl -s http://ifconfig.me`
+    - publicIP=`curl ipecho.net/plain`
     - echo ""
     - echo ""
     - echo "Point your browser at http://"$publicIP":"$PORT to validate the app is working.
