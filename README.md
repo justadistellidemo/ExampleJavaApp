@@ -1,6 +1,5 @@
-JavaUbuntuSimpleApp
+ExampleJavaApp
 ===================
 
-A simple java app with a distelli-spec.yml file that describes how this app should be deployed using Distelli.
+A simple java app with a distelli-manifest.yml file that builds and deploys with Distelli.
 
-Check out the deployment quick start guide at https://www.distelli.com/docs/java-deployment-guide
